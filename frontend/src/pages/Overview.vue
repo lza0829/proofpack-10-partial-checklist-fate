@@ -19,6 +19,9 @@ onMounted(async () => {
         <div class="stat"><div class="stat-num">{{ stats.sample_batch_count }}</div><div class="stat-label">采样批次</div></div>
         <div class="stat"><div class="stat-num">{{ stats.pack_count }}</div><div class="stat-label">证据包</div></div>
         <div class="stat"><div class="stat-num">{{ stats.checklist_count }}</div><div class="stat-label">清单结果</div></div>
+        <div class="stat"><div class="stat-num">{{ stats.partial_rejected_packs }}</div><div class="stat-label">整包驳回中</div></div>
+        <div class="stat"><div class="stat-num">{{ stats.partial_suspended_packs }}</div><div class="stat-label">挂起待清包</div></div>
+        <div class="stat"><div class="stat-num">{{ stats.open_suspension_items }}</div><div class="stat-label">未清挂起项</div></div>
         <div class="stat"><div class="stat-num">{{ stats.passed_releases }}</div><div class="stat-label">已放行</div></div>
         <div class="stat"><div class="stat-num">{{ stats.rejected_releases }}</div><div class="stat-label">已驳回</div></div>
       </div>

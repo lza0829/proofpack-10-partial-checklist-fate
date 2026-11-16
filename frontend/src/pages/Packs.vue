@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { getJSON, postJSON } from '../api'
+import { packStatusLabel } from '../status'
 
 const batches = ref([])
 const packs = ref([])
@@ -79,7 +80,7 @@ async function build() {
             <td>{{ p.batch_id }}</td>
             <td>{{ p.item_count }}</td>
             <td class="mono" style="max-width:12rem;overflow:hidden;text-overflow:ellipsis">{{ p.fingerprint }}</td>
-            <td><span class="tag">{{ ({ built: '已生成', checked_ok: '校验通过', checked_fail: '校验未过', released: '已放行', rejected: '已驳回' })[p.status] || p.status }}</span></td>
+            <td><span class="tag" :class="p.status.startsWith('partial') ? 'danger' : (p.status === 'released' ? 'ok' : '')">{{ packStatusLabel(p.status) }}</span></td>
             <td class="mono">{{ p.created_at }}</td>
           </tr>
         </tbody>

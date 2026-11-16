@@ -50,6 +50,16 @@ def dashboard_stats() -> dict[str, Any]:
             "rejected_releases": conn.execute(
                 "SELECT COUNT(*) c FROM release_decisions WHERE decision='reject'"
             ).fetchone()["c"],
+            "partial_rejected_packs": conn.execute(
+                "SELECT COUNT(*) c FROM evidence_packs WHERE status='partial_rejected'"
+            ).fetchone()["c"],
+            "partial_suspended_packs": conn.execute(
+                "SELECT COUNT(*) c FROM evidence_packs WHERE status='partial_suspended'"
+            ).fetchone()["c"],
+            "open_suspension_items": conn.execute(
+                "SELECT COUNT(*) c FROM checklist_results "
+                "WHERE item_state='suspended' AND resolved=0"
+            ).fetchone()["c"],
         }
     finally:
         conn.close()
